@@ -55,9 +55,12 @@ Vue.component("do-tracking", {
         maximumFractionDigits:0 }).format(value); 
     },
     addProgress() {
-      if (!this.selectedOrder || !this.progressText.trim()) { alert("Pilih delivery order dan isi keterangan progress."); return; 
+      if (!this.selectedOrder || !this.progressText.trim()) { 
+        alert("Pilih delivery order dan isi keterangan progress."); 
+        return; 
       }
-      this.$emit("add-progress", { nomor: this.selectedOrder.nomor, keterangan: this.progressText.trim() 
+      this.$emit("add-progress", { 
+        nomor: this.selectedOrder.nomor, keterangan: this.progressText.trim() 
       });
       this.progressText = "";
     }
@@ -66,12 +69,14 @@ Vue.component("do-tracking", {
     <section class="panel">
       <div class="panel-head">
       <div><h2>Tracking Delivery Order</h2>
-      <p class="panel-subtitle">Cari berdasarkan nomor DO atau NIM. Tekan Enter untuk mencari dan Esc untuk menghapus pencarian.</p>
+      <p class="panel-subtitle">Cari berdasarkan nomor DO. Tekan Enter untuk mencari dan Esc untuk menghapus pencarian.</p>
       </div>
     </div>
       <div class="toolbar">
-        <div class="field"><
-        label>Nomor DO / NIM</label><input class="search-input" v-model="keyword" @keydown="handleKey" placeholder="Contoh: DO2026-001 atau 043210987"></div>
+        <div class="field">
+        <label>Nomor DO / NIM</label>
+        <input class="search-input" v-model="keyword" @keydown="handleKey" placeholder="Contoh: DO2026-001">
+        </div>
         <button class="btn btn-primary" @click="search">Cari</button>
         <button class="btn btn-light" @click="clearSearch">Reset (Esc)</button>
       </div>
@@ -79,7 +84,13 @@ Vue.component("do-tracking", {
       <div v-if="resultOrders.length">
         <article class="order-card" v-for="order in resultOrders" :key="order.nomor">
           <div class="panel-head">
-            <div><h3>{{ order.nomor }}</h3><div class="order-meta"><span>{{ order.nama }} (NIM {{ order.nim }})</span><span>{{ order.ekspedisi }}</span><span>{{ formatDate(order.tanggalKirim) }}</span></div></div>
+            <div><h3>{{ order.nomor }}</h3>
+            <div class="order-meta">
+            <span>{{ order.nama }} (NIM {{ order.nim }})</span>
+            <span>{{ order.ekspedisi }}</span>
+            <span>{{ formatDate(order.tanggalKirim) }}</span>
+          </div>
+        </div>
             <button class="btn btn-light btn-small" @click="selectedOrder = selectedOrder && selectedOrder.nomor === order.nomor ? null : order">{{ selectedOrder && selectedOrder.nomor === order.nomor ? "Tutup detail" : "Lihat detail" }}</button>
           </div>
           <div v-if="selectedOrder && selectedOrder.nomor === order.nomor" class="detail-box">
