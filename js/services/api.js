@@ -1,4 +1,3 @@
-// Service sederhana untuk mengambil dummy data JSON.
 window.SITTAApi = {
   async getInitialData() {
     const response = await fetch("./data/dataBahanAjar.json");
