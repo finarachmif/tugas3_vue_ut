@@ -1,16 +1,16 @@
 {
   "upbjjList": [
     "Jakarta",
-    "Bandung",
     "Surabaya",
     "Makassar",
-    "Medan"
+    "Padang",
+    "Denpasar"
   ],
   "kategoriList": [
-    "Mata Kuliah Umum",
-    "Ilmu Komputer",
-    "Ekonomi",
-    "Pendidikan"
+    "MK Wajib",
+    "MK Pilihan",
+    "Praktikum",
+    "Problem-Based"
   ],
   "stocks": [
     {
