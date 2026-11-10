@@ -91,14 +91,18 @@ Vue.component("ba-stock-table", {
       </div>
       <section class="panel">
         <div class="panel-head">
-          <div><h2>Daftar Stok Bahan Ajar</h2><p class="panel-subtitle">Data dummy dari file JSON. Arahkan kursor ke status untuk melihat catatan.</p></div>
+          <div><h2>Daftar Stok Bahan Ajar</h2>
+          <p class="panel-subtitle">Data dummy dari file JSON. Arahkan kursor ke status untuk melihat catatan.</p>
+          </div>
           <button class="btn btn-primary" @click="openAdd">＋ Tambah Bahan Ajar</button>
         </div>
         <div class="toolbar">
           <div class="field"><label>Cari kode / nama</label><input v-model.trim="keyword" placeholder="Cari bahan ajar..."></div>
           <div class="field"><label>UT-Daerah</label><select v-model="filterUpbjj"><option value="">Semua UT-Daerah</option><option v-for="u in upbjjList" :key="u" :value="u">{{ u }}</option></select></div>
           <div class="field"><label>Kategori</label><select v-model="filterKategori" :disabled="!filterUpbjj"><option value="">Semua kategori</option><option v-for="k in kategoriTersedia" :key="k" :value="k">{{ k }}</option></select></div>
-          <div class="field"><label>Kondisi stok</label><select v-model="filterStok"><option value="semua">Semua stok</option><option value="menipis">Menipis</option><option value="kosong">Kosong</option><option value="reorder">Perlu reorder (qty &lt; safety)</option></select></div>
+          <div class="field"><label>Kondisi stok</label><select v-model="filterStok"><option value="semua">Semua stok</option><option value="menipis">Menipis</option><option value="kosong">Kosong</option><option value="reorder">Perlu reorder (qty &lt; safety)</option>
+          </select>
+          </div>
           <button class="btn btn-light" @click="resetFilter">Reset filter</button>
         </div>
         <div class="toolbar">
@@ -112,14 +116,24 @@ Vue.component("ba-stock-table", {
           <form class="form-grid" @submit.prevent="submitForm">
             <div class="field"><label>Kode mata kuliah *</label><input v-model.trim="form.kode" required placeholder="Contoh: MSIM4301"></div>
             <div class="field"><label>Nama mata kuliah *</label><input v-model.trim="form.judul" required></div>
-            <div class="field"><label>Kategori *</label><select v-model="form.kategori" required><option value="">Pilih kategori</option><option v-for="k in kategoriList" :key="k">{{ k }}</option></select></div>
-            <div class="field"><label>UT-Daerah *</label><select v-model="form.upbjj" required><option value="">Pilih UT-Daerah</option><option v-for="u in upbjjList" :key="u">{{ u }}</option></select></div>
-            <div class="field"><label>Lokasi rak *</label><input v-model.trim="form.lokasiRak" required placeholder="A-01-01"></div>
-            <div class="field"><label>Harga (Rp) *</label><input v-model.number="form.harga" type="number" min="1" required></div>
-            <div class="field"><label>Jumlah stok *</label><input v-model.number="form.qty" type="number" min="0" required></div>
-            <div class="field"><label>Safety stock *</label><input v-model.number="form.safety" type="number" min="0" required></div>
-            <div class="field full"><label>Catatan status</label><input v-model.trim="form.catatanHTML" placeholder="Catatan untuk tooltip status"></div>
-            <div class="full actions"><button type="submit" class="btn btn-primary">{{ editingId ? "Simpan Perubahan" : "Simpan Data" }}</button><button type="button" class="btn btn-outline" @click="cancelForm">Batal</button></div>
+            <div class="field"><label>Kategori *</label><select v-model="form.kategori" required>
+            <option value="">Pilih kategori</option><option v-for="k in kategoriList" :key="k">{{ k }}</option>
+          </select>
+        </div>
+        <div class="field"><label>UT-Daerah *</label><select v-model="form.upbjj" required>
+          <option value="">Pilih UT-Daerah</option><option v-for="u in upbjjList" :key="u">{{ u }}</option></select></div>
+        <div class="field"><label>Lokasi rak *</label>
+          <input v-model.trim="form.lokasiRak" required placeholder="A-01-01"></div>
+        <div class="field"><label>Harga (Rp) *</label>
+          <input v-model.number="form.harga" type="number" min="1" required></div>
+        <div class="field"><label>Jumlah stok *</label>
+          <input v-model.number="form.qty" type="number" min="0" required></div>
+        <div class="field"><label>Safety stock *</label>
+          <input v-model.number="form.safety" type="number" min="0" required></div>
+        <div class="field full"><label>Catatan status</label>
+          <input v-model.trim="form.catatanHTML" placeholder="Catatan untuk tooltip status"></div>
+        <div class="full actions">
+          <button type="submit" class="btn btn-primary">{{ editingId ? "Simpan Perubahan" : "Simpan Data" }}</button><button type="button" class="btn btn-outline" @click="cancelForm">Batal</button></div>
           </form>
           <small class="muted">Tekan Enter pada salah satu input untuk menyimpan formulir.</small>
         </div>
