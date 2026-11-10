@@ -6,15 +6,15 @@
   <meta name="description" content="Aplikasi SITTA Universitas Terbuka untuk stok bahan ajar dan tracking delivery order.">
   <title>SITTA | Sistem Informasi Tiras dan Transaksi Bahan Ajar</title>
   <link rel="stylesheet" href="assets/css/style.css">
-  <!-- Vue 2 dipakai karena tugas meminta Vue.component dan pola Options API. -->
   <script src="https://cdn.jsdelivr.net/npm/vue@2.7.16/dist/vue.js"></script>
+  
 </head>
 <body>
   <div id="app" v-cloak>
     <header class="topbar">
       <div class="brand">
         <div class="brand-mark">UT</div>
-        <div><h2><strong>SITTA</strong></h2><small>Universitas Terbuka</small></div>
+        <div><h2>SITTA</h2><small>Universitas Terbuka</small></div>
       </div>
     </header>
 
@@ -29,10 +29,6 @@
         <button class="nav-button" :class="{active: tab === 'order'}" @click="tab='order'">
           <span></span> Tambah Delivery Order
         </button>
-        <div class="sidebar-note">
-          <strong>SITTA</strong>
-          <p>Sistem Informasi Tiras dan Transaksi Bahan Ajar</p>
-        </div>
       </aside>
 
       <main class="main-content">
