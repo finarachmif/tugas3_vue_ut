@@ -1,8 +1,17 @@
 Vue.component("ba-stock-table", {
   props: {
-    items: { type: Array, required: true },
-    upbjjList: { type: Array, required: true },
-    kategoriList: { type: Array, required: true }
+    items: { 
+      type: Array, 
+      required: true 
+    },
+    upbjjList: { 
+      type: Array, 
+      required: true 
+    },
+    kategoriList: { 
+      type: Array, 
+      required: true 
+    }
   },
   data() {
     return {
@@ -45,23 +54,68 @@ Vue.component("ba-stock-table", {
   },
   watch: {
     filterUpbjj() {
-      if (this.filterKategori && !this.kategoriTersedia.includes(this.filterKategori)) this.filterKategori = "";
+      if (this.filterKategori && !this.kategoriTersedia.includes(this.filterKategori)) 
+        this.filterKategori = "";
     },
     items: {
       deep: true,
       handler() {
-        if (this.editingId && !this.items.some(x => x.id === this.editingId)) this.cancelForm();
+        if (this.editingId && !this.items.some(x => x.id === this.editingId)) 
+          this.cancelForm();
       }
     }
   },
   methods: {
-    emptyForm() { return { kode: "", judul: "", kategori: "", upbjj: "", lokasiRak: "", harga: "", qty: "", safety: "", catatanHTML: "" }; },
-    rupiah(value) { return new Intl.NumberFormat("id-ID", { style: "currency", currency: "IDR", maximumFractionDigits: 0 }).format(Number(value) || 0); },
-    resetFilter() { this.filterUpbjj = ""; this.filterKategori = ""; this.filterStok = "semua"; this.sortBy = "judul"; this.sortDirection = 1; this.keyword = ""; },
-    changeSort(field) { if (this.sortBy === field) this.sortDirection *= -1; else { this.sortBy = field; this.sortDirection = 1; } },
-    openAdd() { this.form = this.emptyForm(); this.editingId = null; this.showForm = true; },
-    openEdit(item) { this.form = { ...item }; this.editingId = item.id; this.showForm = true; },
-    cancelForm() { this.showForm = false; this.editingId = null; this.form = this.emptyForm(); },
+    emptyForm() { 
+      return { 
+        kode: "", 
+        judul: "", 
+        kategori: "", 
+        upbjj: "", 
+        lokasiRak: "", 
+        harga: "", 
+        qty: "", 
+        safety: "", 
+        catatanHTML: "" 
+      }; 
+    },
+    rupiah(value) { 
+      return new Intl.NumberFormat("id-ID", { 
+        style: "currency", 
+        currency: "IDR", 
+        maximumFractionDigits: 0 }).format(Number(value) || 0); 
+    },
+    resetFilter() { 
+      this.filterUpbjj = ""; 
+      this.filterKategori = ""; 
+      this.filterStok = "semua"; 
+      this.sortBy = "judul"; 
+      this.sortDirection = 1; 
+      this.keyword = ""; 
+    },
+    changeSort(field) { 
+      if (this.sortBy === field) 
+        this.sortDirection *= -1; 
+      else { 
+        this.sortBy = field; this.sortDirection = 1; 
+      } 
+    },
+    openAdd() { 
+      this.form = this.emptyForm(); 
+      this.editingId = null; 
+      this.showForm = true; 
+    },
+    openEdit(item) { 
+      this.form = { ...item }; 
+      this.editingId = item.id; 
+      this.showForm = true; 
+    },
+    cancelForm() { 
+      this.showForm = false; 
+      this.editingId = null; 
+      this.form = 
+        this.emptyForm(); 
+    },
     submitForm() {
       const f = this.form;
       if (!f.kode.trim() || !f.judul.trim() || !f.kategori || !f.upbjj || !f.lokasiRak.trim() ||
@@ -97,16 +151,30 @@ Vue.component("ba-stock-table", {
           <button class="btn btn-primary" @click="openAdd">＋ Tambah Bahan Ajar</button>
         </div>
         <div class="toolbar">
-          <div class="field"><label>Cari kode / nama</label><input v-model.trim="keyword" placeholder="Cari bahan ajar..."></div>
-          <div class="field"><label>UT-Daerah</label><select v-model="filterUpbjj"><option value="">Semua UT-Daerah</option><option v-for="u in upbjjList" :key="u" :value="u">{{ u }}</option></select></div>
-          <div class="field"><label>Kategori</label><select v-model="filterKategori" :disabled="!filterUpbjj"><option value="">Semua kategori</option><option v-for="k in kategoriTersedia" :key="k" :value="k">{{ k }}</option></select></div>
-          <div class="field"><label>Kondisi stok</label><select v-model="filterStok"><option value="semua">Semua stok</option><option value="menipis">Menipis</option><option value="kosong">Kosong</option><option value="reorder">Perlu reorder (qty &lt; safety)</option>
+          <div class="field"><label>Cari kode / nama</label>
+          <input v-model.trim="keyword" placeholder="Cari bahan ajar..."></div>
+          <div class="field"><label>UT-Daerah</label>
+          <select v-model="filterUpbjj"><option value="">Semua UT-Daerah</option>
+          <option v-for="u in upbjjList" :key="u" :value="u">{{ u }}</option></select></div>
+          <div class="field"><label>Kategori</label>
+          <select v-model="filterKategori" :disabled="!filterUpbjj"><option value="">Semua kategori</option>
+          <option v-for="k in kategoriTersedia" :key="k" :value="k">{{ k }}</option></select></div>
+          <div class="field"><label>Kondisi stok</label><select v-model="filterStok"><option value="semua">Semua stok</option>
+          <option value="menipis">Menipis</option><option value="kosong">Kosong</option>
+          <option value="reorder">Perlu reorder (qty &lt; safety)</option>
           </select>
           </div>
           <button class="btn btn-light" @click="resetFilter">Reset filter</button>
         </div>
         <div class="toolbar">
-          <div class="field"><label>Urutkan berdasarkan</label><select v-model="sortBy"><option value="judul">Judul</option><option value="qty">Jumlah stok</option><option value="harga">Harga</option></select></div>
+          <div class="field">
+          <label>Urutkan berdasarkan</label>
+          <select v-model="sortBy">
+          <option value="judul">Judul</option>
+          <option value="qty">Jumlah stok</option>
+          <option value="harga">Harga</option>
+          </select>
+          </div>
           <button class="btn btn-outline" @click="sortDirection *= -1">{{ sortDirection === 1 ? "Naik ↑" : "Turun ↓" }}</button>
           <span class="muted">Menampilkan {{ filteredItems.length }} dari {{ items.length }} data</span>
         </div>
@@ -121,7 +189,9 @@ Vue.component("ba-stock-table", {
           </select>
         </div>
         <div class="field"><label>UT-Daerah *</label><select v-model="form.upbjj" required>
-          <option value="">Pilih UT-Daerah</option><option v-for="u in upbjjList" :key="u">{{ u }}</option></select></div>
+          <option value="">Pilih UT-Daerah</option><option v-for="u in upbjjList" :key="u">{{ u }}</option>
+          </select>
+          </div>
         <div class="field"><label>Lokasi rak *</label>
           <input v-model.trim="form.lokasiRak" required placeholder="A-01-01"></div>
         <div class="field"><label>Harga (Rp) *</label>
@@ -133,24 +203,46 @@ Vue.component("ba-stock-table", {
         <div class="field full"><label>Catatan status</label>
           <input v-model.trim="form.catatanHTML" placeholder="Catatan untuk tooltip status"></div>
         <div class="full actions">
-          <button type="submit" class="btn btn-primary">{{ editingId ? "Simpan Perubahan" : "Simpan Data" }}</button><button type="button" class="btn btn-outline" @click="cancelForm">Batal</button></div>
+          <button type="submit" class="btn btn-primary">{{ editingId ? "Simpan Perubahan" : "Simpan Data" }}</button>
+          <button type="button" class="btn btn-outline" @click="cancelForm">Batal</button>
+          </div>
           </form>
           <small class="muted">Tekan Enter pada salah satu input untuk menyimpan formulir.</small>
         </div>
 
         <div class="table-wrap">
           <table>
-            <thead><tr><th>No.</th><th>Kode / Nama Mata Kuliah</th><th>Kategori</th><th>UT-Daerah</th><th>Lokasi Rak</th><th>Harga</th><th>Jumlah Stok</th><th>Safety Stock</th><th>Status</th><th>Aksi</th></tr></thead>
+            <thead>
+            <tr>
+            <th>No.</th>
+            <th>Kode / Nama Mata Kuliah</th>
+            <th>Kategori</th>
+            <th>UT-Daerah</th>
+            <th>Lokasi Rak</th>
+            <th>Harga</th>
+            <th>Jumlah Stok</th>
+            <th>Safety Stock</th>
+            <th>Status</th>
+            <th>Aksi</th>
+            </tr>
+            </thead>
             <tbody>
               <tr v-for="(item,index) in filteredItems" :key="item.id">
                 <td>{{ index + 1 }}</td>
-                <td><span class="cell-title">{{ item.kode }}</span><span class="cell-sub">{{ item.judul }}</span></td>
-                <td>{{ item.kategori }}</td><td>{{ item.upbjj }}</td><td>{{ item.lokasiRak }}</td>
-                <td>{{ rupiah(item.harga) }}</td><td>{{ item.qty }} buah</td><td>{{ item.safety }} buah</td>
+                <td><span class="cell-title">{{ item.kode }}</span>
+                <span class="cell-sub">{{ item.judul }}</span></td>
+                <td>{{ item.kategori }}</td>
+                <td>{{ item.upbjj }}</td><td>{{ item.lokasiRak }}</td>
+                <td>{{ rupiah(item.harga) }}</td>
+                <td>{{ item.qty }} buah</td>
+                <td>{{ item.safety }} buah</td>
                 <td><status-badge :qty="item.qty" :safety="item.safety" :note="item.catatanHTML"></status-badge></td>
-                <td><div class="actions"><button class="btn btn-light btn-small" @click="openEdit(item)">Edit</button><button class="btn btn-danger btn-small" @click="askDelete(item)">Hapus</button></div></td>
+                <td><div class="actions"><button class="btn btn-light btn-small" @click="openEdit(item)">Edit</button>
+                <button class="btn btn-danger btn-small" @click="askDelete(item)">Hapus</button></div></td>
               </tr>
-              <tr v-if="filteredItems.length === 0"><td colspan="10" class="empty-state">Data tidak ditemukan. Ubah atau reset filter.</td></tr>
+              <tr v-if="filteredItems.length === 0">
+              <td colspan="10" class="empty-state">Data tidak ditemukan. Ubah atau reset filter.</td>
+              </tr>
             </tbody>
           </table>
         </div>
