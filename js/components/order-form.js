@@ -5,7 +5,7 @@ Vue.component("order-form", {
   },
   computed: {
     paketDipilih() { return this.paketList.find(p => p.kode === this.form.paket) || null; },
-    daftarEkspedisi() { return ["JNE Regular","JNE Express","Pos Indonesia"]; }
+    daftarEkspedisi() { return ["JNE Regular (3-5 Hari)","JNE Express (1-2 Hari)"]; }
   },
   watch: {
     "form.paket"(newValue) { if (newValue && !this.paketList.some(p => p.kode === newValue)) this.form.paket = ""; },
@@ -26,7 +26,9 @@ Vue.component("order-form", {
   },
   template: `
     <section class="panel">
-      <div class="panel-head"><div><h2>Tambah Delivery Order</h2><p class="panel-subtitle">Nomor DO dibuat otomatis berdasarkan tahun dan nomor urut.</p></div></div>
+      <div class="panel-head">
+      <div><h2>Tambah Delivery Order</h2><p class="panel-subtitle">Nomor DO dibuat otomatis berdasarkan tahun dan nomor urut.</p></div>
+      </div>
       <form @submit.prevent="submit">
         <div class="form-grid">
           <div class="field"><label>NIM *</label><input v-model.trim="form.nim" required inputmode="numeric" placeholder="Masukkan NIM"></div>
