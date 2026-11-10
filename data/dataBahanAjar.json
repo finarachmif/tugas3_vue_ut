@@ -64,30 +64,21 @@
   ],
   "paketList": [
     {
-      "kode": "PAKET-001",
-      "nama": "Paket Ilmu Komputer Dasar",
-      "harga": 395000,
+      "kode": "PAKET-UT-001",
+      "nama": "PAKET IPS DASAR",
+      "harga": 120000,
       "isi": [
-        "Rekayasa Perangkat Lunak",
-        "Basis Data",
-        "Analisis dan Visualisasi Data"
+        "EKMA4116",
+        "EKMA4115"
       ]
     },
     {
-      "kode": "PAKET-002",
-      "nama": "Paket Mata Kuliah Umum",
-      "harga": 230000,
+      "kode": "PAKET-UT-002",
+      "nama": "PAKET IPA DSSAR",
+      "harga": 140000,
       "isi": [
-        "Belajar di Era Digital",
-        "Ilmu Sosial dan Budaya Dasar"
-      ]
-    },
-    {
-      "kode": "PAKET-003",
-      "nama": "Paket Manajemen",
-      "harga": 145000,
-      "isi": [
-        "Manajemen Strategik"
+        "BIOL4201",
+        "FISIP4001"
       ]
     }
   ],
