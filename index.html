@@ -14,25 +14,20 @@
     <header class="topbar">
       <div class="brand">
         <div class="brand-mark">UT</div>
-        <div><strong>SITTA</strong><small>Universitas Terbuka</small></div>
-      </div>
-      <div class="topbar-right">
-        <span class="user-label">Petugas UT-Daerah</span>
-        <span class="avatar">U</span>
+        <div><h2><strong>SITTA</strong></h2><small>Universitas Terbuka</small></div>
       </div>
     </header>
 
     <div class="page-shell">
       <aside class="sidebar">
-        <p class="menu-caption">MENU UTAMA</p>
         <button class="nav-button" :class="{active: tab === 'stok'}" @click="tab='stok'">
-          <span>▦</span> Stok Bahan Ajar
+          <span></span> Stok Bahan Ajar
         </button>
         <button class="nav-button" :class="{active: tab === 'tracking'}" @click="tab='tracking'">
-          <span>⌖</span> Tracking Delivery Order
+          <span></span> Tracking Delivery Order
         </button>
         <button class="nav-button" :class="{active: tab === 'order'}" @click="tab='order'">
-          <span>＋</span> Tambah Delivery Order
+          <span></span> Tambah Delivery Order
         </button>
         <div class="sidebar-note">
           <strong>SITTA</strong>
@@ -46,8 +41,6 @@
             <p class="eyebrow">UNIVERSITAS TERBUKA</p>
             <h1>{{ sapaan }}, Petugas SITTA!</h1>
             <p class="muted">Kelola persediaan bahan ajar dan pantau pengiriman dalam satu aplikasi.</p>
-          </div>
-          <div class="date-chip">{{ tanggalHariIni }}</div>
         </section>
 
         <section v-if="tab === 'stok'">
@@ -68,8 +61,6 @@
         <section v-else-if="tab === 'order'">
           <order-form :upbjj-list="upbjjList" :paket-list="paketList" @save-order="saveOrder"></order-form>
         </section>
-
-        <footer class="footer">© {{ tahun }} SITTA - Universitas Terbuka</footer>
       </main>
     </div>
 
@@ -84,7 +75,6 @@
     <div v-if="toast" class="toast" role="status">{{ toast }}</div>
   </div>
 
-  <!-- Template dimuat dari folder templates, lalu komponen didaftarkan sebelum Vue di-mount. -->
   <script src="js/services/api.js"></script>
   <script src="js/components/status-badge.js"></script>
   <script src="js/components/app-modal.js"></script>
