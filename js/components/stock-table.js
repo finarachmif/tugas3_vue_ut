@@ -193,7 +193,7 @@ Vue.component("ba-stock-table", {
           </select>
           </div>
         <div class="field"><label>Lokasi rak *</label>
-          <input v-model.trim="form.lokasiRak" required placeholder="A-01-01"></div>
+          <input v-model.trim="form.lokasiRak"></div>
         <div class="field"><label>Harga (Rp) *</label>
           <input v-model.number="form.harga" type="number" min="1" required></div>
         <div class="field"><label>Jumlah stok *</label>
