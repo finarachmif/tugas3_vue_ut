@@ -1,0 +1,164 @@
+{
+  "upbjjList": [
+    "Jakarta",
+    "Bandung",
+    "Surabaya",
+    "Makassar",
+    "Medan"
+  ],
+  "kategoriList": [
+    "Mata Kuliah Umum",
+    "Ilmu Komputer",
+    "Ekonomi",
+    "Pendidikan"
+  ],
+  "stocks": [
+    {
+      "id": 1,
+      "kode": "MSIM4301",
+      "judul": "Rekayasa Perangkat Lunak",
+      "kategori": "Ilmu Komputer",
+      "upbjj": "Jakarta",
+      "lokasiRak": "A-01-02",
+      "harga": 135000,
+      "qty": 48,
+      "safety": 15,
+      "catatanHTML": "Stok tersedia dan berada di atas batas minimum."
+    },
+    {
+      "id": 2,
+      "kode": "MSIM4206",
+      "judul": "Basis Data",
+      "kategori": "Ilmu Komputer",
+      "upbjj": "Bandung",
+      "lokasiRak": "B-02-01",
+      "harga": 130000,
+      "qty": 8,
+      "safety": 12,
+      "catatanHTML": "Stok berada di bawah safety stock. Segera lakukan pemesanan ulang."
+    },
+    {
+      "id": 3,
+      "kode": "MSIM4310",
+      "judul": "Analisis dan Visualisasi Data",
+      "kategori": "Ilmu Komputer",
+      "upbjj": "Surabaya",
+      "lokasiRak": "C-01-03",
+      "harga": 132000,
+      "qty": 0,
+      "safety": 10,
+      "catatanHTML": "Stok kosong. Perlu dilakukan reorder."
+    },
+    {
+      "id": 4,
+      "kode": "MKWI4202",
+      "judul": "Belajar di Era Digital",
+      "kategori": "Mata Kuliah Umum",
+      "upbjj": "Makassar",
+      "lokasiRak": "D-03-01",
+      "harga": 140000,
+      "qty": 156,
+      "safety": 30,
+      "catatanHTML": "Stok aman dan mencukupi."
+    },
+    {
+      "id": 5,
+      "kode": " EKMA4314",
+      "judul": "Manajemen Strategik",
+      "kategori": "Ekonomi",
+      "upbjj": "Medan",
+      "lokasiRak": "E-01-01",
+      "harga": 145000,
+      "qty": 22,
+      "safety": 20,
+      "catatanHTML": "Stok masih aman."
+    },
+    {
+      "id": 6,
+      "kode": "MKDU4109",
+      "judul": "Ilmu Sosial dan Budaya Dasar",
+      "kategori": "Pendidikan",
+      "upbjj": "Jakarta",
+      "lokasiRak": "A-02-04",
+      "harga": 90000,
+      "qty": 6,
+      "safety": 10,
+      "catatanHTML": "Stok menipis dan perlu dipantau."
+    }
+  ],
+  "paketList": [
+    {
+      "kode": "PAKET-001",
+      "nama": "Paket Ilmu Komputer Dasar",
+      "harga": 395000,
+      "isi": [
+        "Rekayasa Perangkat Lunak",
+        "Basis Data",
+        "Analisis dan Visualisasi Data"
+      ]
+    },
+    {
+      "kode": "PAKET-002",
+      "nama": "Paket Mata Kuliah Umum",
+      "harga": 230000,
+      "isi": [
+        "Belajar di Era Digital",
+        "Ilmu Sosial dan Budaya Dasar"
+      ]
+    },
+    {
+      "kode": "PAKET-003",
+      "nama": "Paket Manajemen",
+      "harga": 145000,
+      "isi": [
+        "Manajemen Strategik"
+      ]
+    }
+  ],
+  "orders": [
+    {
+      "nomor": "DO2026-001",
+      "nim": "043210987",
+      "nama": "Andi Pratama",
+      "ekspedisi": "JNE Regular",
+      "paket": "PAKET-001",
+      "paketNama": "Paket Ilmu Komputer Dasar",
+      "tanggalKirim": "2026-11-08",
+      "total": 395000,
+      "riwayat": [
+        {
+          "waktu": "2026-11-08T09:00:00",
+          "keterangan": "Pesanan diterima"
+        },
+        {
+          "waktu": "2026-11-08T14:30:00",
+          "keterangan": "Bahan ajar sedang dikemas"
+        },
+        {
+          "waktu": "2026-11-09T08:15:00",
+          "keterangan": "Paket diserahkan kepada kurir"
+        }
+      ]
+    },
+    {
+      "nomor": "DO2026-002",
+      "nim": "043210988",
+      "nama": "Siti Rahma",
+      "ekspedisi": "JNE Express",
+      "paket": "PAKET-002",
+      "paketNama": "Paket Mata Kuliah Umum",
+      "tanggalKirim": "2026-11-09",
+      "total": 230000,
+      "riwayat": [
+        {
+          "waktu": "2026-11-09T10:00:00",
+          "keterangan": "Pesanan diterima"
+        },
+        {
+          "waktu": "2026-11-09T16:00:00",
+          "keterangan": "Paket sedang dalam perjalanan"
+        }
+      ]
+    }
+  ]
+}

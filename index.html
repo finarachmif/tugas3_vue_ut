@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Aplikasi SITTA Universitas Terbuka untuk stok bahan ajar dan tracking delivery order.">
+  <title>SITTA | Sistem Informasi Tiras dan Transaksi Bahan Ajar</title>
+  <link rel="stylesheet" href="assets/css/style.css">
+  <!-- Vue 2 dipakai karena tugas meminta Vue.component dan pola Options API. -->
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.7.16/dist/vue.js"></script>
+</head>
+<body>
+  <div id="app" v-cloak>
+    <header class="topbar">
+      <div class="brand">
+        <div class="brand-mark">UT</div>
+        <div><strong>SITTA</strong><small>Universitas Terbuka</small></div>
+      </div>
+      <div class="topbar-right">
+        <span class="user-label">Petugas UT-Daerah</span>
+        <span class="avatar">U</span>
+      </div>
+    </header>
+
+    <div class="page-shell">
+      <aside class="sidebar">
+        <p class="menu-caption">MENU UTAMA</p>
+        <button class="nav-button" :class="{active: tab === 'stok'}" @click="tab='stok'">
+          <span>▦</span> Stok Bahan Ajar
+        </button>
+        <button class="nav-button" :class="{active: tab === 'tracking'}" @click="tab='tracking'">
+          <span>⌖</span> Tracking Delivery Order
+        </button>
+        <button class="nav-button" :class="{active: tab === 'order'}" @click="tab='order'">
+          <span>＋</span> Tambah Delivery Order
+        </button>
+        <div class="sidebar-note">
+          <strong>SITTA</strong>
+          <p>Sistem Informasi Tiras dan Transaksi Bahan Ajar</p>
+        </div>
+      </aside>
+
+      <main class="main-content">
+        <section class="welcome">
+          <div>
+            <p class="eyebrow">UNIVERSITAS TERBUKA</p>
+            <h1>{{ sapaan }}, Petugas SITTA!</h1>
+            <p class="muted">Kelola persediaan bahan ajar dan pantau pengiriman dalam satu aplikasi.</p>
+          </div>
+          <div class="date-chip">{{ tanggalHariIni }}</div>
+        </section>
+
+        <section v-if="tab === 'stok'">
+          <ba-stock-table
+            :items="stocks"
+            :upbjj-list="upbjjList"
+            :kategori-list="kategoriList"
+            @update-stock="updateStock"
+            @add-stock="addStock"
+            @delete-stock="deleteStock">
+          </ba-stock-table>
+        </section>
+
+        <section v-else-if="tab === 'tracking'">
+          <do-tracking :orders="orders" @add-progress="addProgress"></do-tracking>
+        </section>
+
+        <section v-else-if="tab === 'order'">
+          <order-form :upbjj-list="upbjjList" :paket-list="paketList" @save-order="saveOrder"></order-form>
+        </section>
+
+        <footer class="footer">© {{ tahun }} SITTA - Universitas Terbuka</footer>
+      </main>
+    </div>
+
+    <app-modal
+      :show="modal.show"
+      :title="modal.title"
+      :message="modal.message"
+      :confirm-text="modal.confirmText"
+      @close="modal.show=false"
+      @confirm="confirmModal">
+    </app-modal>
+    <div v-if="toast" class="toast" role="status">{{ toast }}</div>
+  </div>
+
+  <!-- Template dimuat dari folder templates, lalu komponen didaftarkan sebelum Vue di-mount. -->
+  <script src="js/services/api.js"></script>
+  <script src="js/components/status-badge.js"></script>
+  <script src="js/components/app-modal.js"></script>
+  <script src="js/components/stock-table.js"></script>
+  <script src="js/components/do-tracking.js"></script>
+  <script src="js/components/order-form.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
