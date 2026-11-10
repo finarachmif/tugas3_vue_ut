@@ -85,45 +85,25 @@
   "orders": [
     {
       "nomor": "DO2026-001",
-      "nim": "043210987",
+      "nim": "123456789",
       "nama": "Rina Wulandari",
       "ekspedisi": "JNE Regular",
-      "paket": "PAKET-001",
-      "paketNama": "Paket Ilmu Komputer Dasar",
-      "tanggalKirim": "2026-11-08",
+      "paket": "PAKET-UT-001",
+      "paketNama": "PAKET IPS DASAR",
+      "tanggalKirim": "2026-08-25",
       "total": 395000,
       "riwayat": [
         {
-          "waktu": "2026-11-08T09:00:00",
+          "waktu": "2026-08-25T09:00:00",
           "keterangan": "Pesanan diterima"
         },
         {
-          "waktu": "2026-11-08T14:30:00",
-          "keterangan": "Bahan ajar sedang dikemas"
-        },
-        {
-          "waktu": "2026-11-09T08:15:00",
+          "waktu": "2026-08-25T14:30:29",
           "keterangan": "Paket diserahkan kepada kurir"
-        }
-      ]
-    },
-    {
-      "nomor": "DO2026-002",
-      "nim": "043210988",
-      "nama": "Siti Rahma",
-      "ekspedisi": "JNE Express",
-      "paket": "PAKET-002",
-      "paketNama": "Paket Mata Kuliah Umum",
-      "tanggalKirim": "2026-11-09",
-      "total": 230000,
-      "riwayat": [
-        {
-          "waktu": "2026-11-09T10:00:00",
-          "keterangan": "Pesanan diterima"
         },
         {
-          "waktu": "2026-11-09T16:00:00",
-          "keterangan": "Paket sedang dalam perjalanan"
+          "waktu": "2026-08-25T19:12:20",
+          "keterangan": "Penerimaan di loket : TANGSEL"
         }
       ]
     }
