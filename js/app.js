@@ -1,4 +1,3 @@
-// Root Vue instance. Data diambil dari JSON melalui service api.js.
 (async function initSITTA() {
   try {
     const initialData = await SITTAApi.getInitialData();
@@ -11,7 +10,13 @@
         kategoriList: initialData.kategoriList,
         paketList: initialData.paketList,
         orders: initialData.orders,
-        modal: { show:false, title:"", message:"", confirmText:"Ya, lanjutkan", action:null },
+        modal: { 
+          show:false, 
+          title:"", 
+          message:"", 
+          confirmText:"Ya, lanjutkan", 
+          action:null 
+        },
         toast: "",
         toastTimer: null
       },
@@ -24,9 +29,16 @@
           return "Selamat Malam";
         },
         tanggalHariIni() {
-          return new Date().toLocaleDateString("id-ID", { weekday:"long", day:"numeric", month:"long", year:"numeric" });
+          return new Date().toLocaleDateString("id-ID", { 
+            weekday:"long", 
+            day:"numeric", 
+            month:"long", 
+            year:"numeric" 
+          });
         },
-        tahun() { return new Date().getFullYear(); }
+        tahun() { return 
+          new Date().getFullYear(); 
+        }
       },
       methods: {
         notify(message) {
