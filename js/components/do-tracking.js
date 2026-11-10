@@ -10,26 +10,68 @@ Vue.component("do-tracking", {
   },
   watch: {
     submittedKeyword() { this.selectedOrder = null; },
-    orders: { deep: true, handler() { if (this.selectedOrder) this.selectedOrder = this.orders.find(o => o.nomor === this.selectedOrder.nomor) || null; } }
+    orders: { 
+      deep: true, handler() { 
+        if (this.selectedOrder) 
+          this.selectedOrder = this.orders.find(o => o.nomor === this.selectedOrder.nomor) || null; 
+      } 
+    }
   },
   methods: {
-    search() { this.submittedKeyword = this.keyword.trim(); this.selectedOrder = this.resultOrders[0] || null; },
-    clearSearch() { this.keyword = ""; this.submittedKeyword = ""; this.selectedOrder = null; },
-    handleKey(event) { if (event.key === "Enter") { event.preventDefault(); this.search(); } if (event.key === "Escape") this.clearSearch(); },
-    formatDate(value) { return new Date(value + "T00:00:00").toLocaleDateString("id-ID", { day:"numeric", month:"long", year:"numeric" }); },
-    formatDateTime(value) { return new Date(value).toLocaleString("id-ID", { dateStyle:"long", timeStyle:"short" }); },
-    rupiah(value) { return new Intl.NumberFormat("id-ID", { style:"currency", currency:"IDR", maximumFractionDigits:0 }).format(value); },
+    search() { 
+      this.submittedKeyword = this.keyword.trim(); 
+      this.selectedOrder = this.resultOrders[0] || null; 
+    },
+    clearSearch() { 
+      this.keyword = ""; 
+      this.submittedKeyword = ""; 
+      this.selectedOrder = null; 
+    },
+    handleKey(event) { 
+      if (event.key === "Enter") { 
+        event.preventDefault(); 
+        this.search(); 
+      } 
+      if (event.key === "Escape") 
+        this.clearSearch(); 
+    },
+    formatDate(value) { 
+      return new Date
+        (value + "T00:00:00").toLocaleDateString("id-ID", { 
+          day:"numeric", 
+          month:"long", 
+          year:"numeric" 
+        }); 
+    },
+    formatDateTime(value) { 
+      return new Date(value).toLocaleString("id-ID", { 
+        dateStyle:"long", timeStyle:"short" 
+      }); 
+    },
+    rupiah(value) { 
+      return new Intl.NumberFormat("id-ID", { 
+        style:"currency", 
+        currency:"IDR", 
+        maximumFractionDigits:0 }).format(value); 
+    },
     addProgress() {
-      if (!this.selectedOrder || !this.progressText.trim()) { alert("Pilih delivery order dan isi keterangan progress."); return; }
-      this.$emit("add-progress", { nomor: this.selectedOrder.nomor, keterangan: this.progressText.trim() });
+      if (!this.selectedOrder || !this.progressText.trim()) { alert("Pilih delivery order dan isi keterangan progress."); return; 
+      }
+      this.$emit("add-progress", { nomor: this.selectedOrder.nomor, keterangan: this.progressText.trim() 
+      });
       this.progressText = "";
     }
   },
   template: `
     <section class="panel">
-      <div class="panel-head"><div><h2>Tracking Delivery Order</h2><p class="panel-subtitle">Cari berdasarkan nomor DO atau NIM. Tekan Enter untuk mencari dan Esc untuk menghapus pencarian.</p></div></div>
+      <div class="panel-head">
+      <div><h2>Tracking Delivery Order</h2>
+      <p class="panel-subtitle">Cari berdasarkan nomor DO atau NIM. Tekan Enter untuk mencari dan Esc untuk menghapus pencarian.</p>
+      </div>
+    </div>
       <div class="toolbar">
-        <div class="field"><label>Nomor DO / NIM</label><input class="search-input" v-model="keyword" @keydown="handleKey" placeholder="Contoh: DO2026-001 atau 043210987"></div>
+        <div class="field"><
+        label>Nomor DO / NIM</label><input class="search-input" v-model="keyword" @keydown="handleKey" placeholder="Contoh: DO2026-001 atau 043210987"></div>
         <button class="btn btn-primary" @click="search">Cari</button>
         <button class="btn btn-light" @click="clearSearch">Reset (Esc)</button>
       </div>
